@@ -6,7 +6,7 @@
 /* hero background image */
 .bgimage {
     height:50vh;
-    background: url('https://img.freepik.com/free-vector/gradient-golden-linear-background_23-2148944136.jpg?w=740&t=st=1694798959~exp=1694799559~hmac=684d8952acc7832cc05720ada708790b25a466e5b3a3322d1b165e96c84a7edd');
+    background: url('images/heroimage2.jpg');
     background-size:cover;
     position:relative;
 }
