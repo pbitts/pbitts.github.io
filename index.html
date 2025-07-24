@@ -1,35 +1,327 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Pbitts Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pbitts | Software Developer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00ffff;
+      --bg-dark: #0a0a0a;
+      --bg-overlay: rgba(0,0,0,0.7);
+      --text-light: #f0f0f0;
+      --text-muted: #bbb;
+    }
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3GD2XL7G1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-    gtag('config', 'G-F3GD2XL7G1');
-  </script>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-light);
+      background: var(--bg-dark) url('mountains.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
 
-  <!-- Outros estilos ou meta tags que desejar -->
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      z-index: 1000;
+      border-bottom: 1px solid #222;
+    }
+
+    .nav-links a {
+      margin: 0 1.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.3rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .social-icons a {
+      color: var(--primary);
+      margin-left: 1.5rem;
+      font-size: 1.6rem;
+      transition: transform 0.3s;
+    }
+
+    .social-icons a:hover {
+      transform: scale(1.2);
+    }
+
+    header {
+      padding-top: 160px;
+      text-align: center;
+      background-color: var(--bg-overlay);
+      padding-bottom: 4rem;
+    }
+
+    .banner-logo {
+      max-width: 450px;
+      width: 90%;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      margin: 0.3rem 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 3rem 1.5rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      background-color: var(--bg-overlay);
+      padding: 2.5rem;
+      border-radius: 12px;
+    }
+
+    h2 {
+      font-size: 2.4rem;
+      border-left: 4px solid var(--primary);
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .card a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    .filter-btn {
+      background-color: #111;
+      color: var(--primary);
+      border: 1px solid var(--primary);
+      padding: 0.6rem 1.2rem;
+      margin: 0.3rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background-color: var(--primary);
+      color: #000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 1rem;
+      color: #aaa;
+      background-color: rgba(0, 0, 0, 0.95);
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        margin-top: 0.5rem;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        margin: 0 1rem;
+      }
+
+      .social-icons a {
+        font-size: 1.4rem;
+      }
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <nav>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#articles">Articles</a>
+    </div>
+    <div class="social-icons">
+      <a href="https://linkedin.com/in/pedrohbittencourt" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/pbitts" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="mailto:pbitts[dot]projects[at]gmail[dot]com"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.upwork.com/freelancers/~yourupworkprofile" target="_blank"><i class="fas fa-briefcase"></i></a>
+    </div>
+  </nav>
 
-  <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%; padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden; border-radius: 8px; will-change: transform;">
-    <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0; margin: 0; transform: scale(0.7);" src="https://www.canva.com/design/DAGAVkWgyLA/LqaCCXYvTCRs4TlOwj8HZA/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen"></iframe>
+  <header>
+    <img src="logo.png" alt="Pbitts Logo" class="banner-logo" />
+    <h1></h1>
+    <p class="subtitle">Software Developer</p>
+    <p class="subtitle">Electronics & Telecom Engineer</p>
+    <p class="subtitle">Graduate Certificate in AI and Neural Networks</p>
+  </header>
+
+  <div class="container">
+    <section id="about">
+      <h2>About Me</h2>
+      <p>
+        Greetings! I am a seasoned Software Developer with over 5 years of hands-on experience in the industry. As an Electronics and Telecommunications Engineer, my technical background has equipped me with a robust foundation for tackling complex challenges in software development.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div style="text-align:center;">
+        <button class="filter-btn" onclick="filterProjects('all')">All</button>
+        <button class="filter-btn" onclick="filterProjects('eng')">Electronics & Telecom Engineering</button>
+        <button class="filter-btn" onclick="filterProjects('signal-ai')">AI & Signal Processing</button>
+        <button class="filter-btn" onclick="filterProjects('automation')">Automation</button>
+      </div>
+      <div class="grid" id="project-grid">
+        <div class="card project-item eng">
+          <h3>Signal Conditioner Calculator</h3>
+          <p>Tool for calculating signal conditioning circuits.</p>
+          <a href="https://signal-conditioner-calculator.onrender.com/" target="_blank">View Project</a>
+        </div>
+        <div class="card project-item eng">
+          <h3>Optical Link Calculator</h3>
+          <p>Calculates power budgets in optical communication systems.</p>
+          <a href="https://optical-link-calculator.onrender.com/" target="_blank">View Project</a>
+        </div>
+        <div class="card project-item eng">
+          <h3>Mid-Rise Quantization Simulator</h3>
+          <p>Simulates mid-rise quantization for signal processing studies.</p>
+          <a href="https://mid-rise-signal-quantization-simulator.onrender.com/" target="_blank">View Project</a>
+        </div>
+        <div class="card project-item signal-ai">
+          <h3>Guitar Audio Transcription</h3>
+          <p>Automatic transcription of monophonic guitar audios to tablature.</p>
+          <a href="https://github.com/pbitts/AGT_tabs" target="_blank">View Project</a>
+        </div>
+        <div class="card project-item automation">
+          <h3>Investments Report</h3>
+          <p>Python tool to generate and visualize investment performance reports.</p>
+          <a href="https://github.com/pbitts/investments_report" target="_blank">View Project</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="articles">
+      <h2>Articles</h2>
+      <div style="text-align:center;">
+        <button class="filter-btn" onclick="filterArticles('all')">All</button>
+        <button class="filter-btn" onclick="filterArticles('ai')">AI</button>
+        <button class="filter-btn" onclick="filterArticles('architecture')">Software Architecture</button>
+        <button class="filter-btn" onclick="filterArticles('devops')">DevOps</button>
+      </div>
+      <div class="grid" id="article-grid">
+        <div class="card article-item ai">
+          <h3>Fine-tuning Artificial Brains</h3>
+          <p>Exploring strategies in neural network training.</p>
+          <a href="https://www.linkedin.com/pulse/fine-tuning-artificial-brains-symphony-strategies-pedro-bittencourt-1stdf/" target="_blank">Read Article</a>
+        </div>
+        <div class="card article-item architecture">
+          <h3>Clean Architecture</h3>
+          <p>Reducing stress and improving codebase clarity.</p>
+          <a href="https://www.linkedin.com/pulse/clean-architecture-power-reducing-stress-increasing-pedro-bittencourt-elczc/" target="_blank">Read Article</a>
+        </div>
+        <div class="card article-item devops">
+          <h3>Introduction to Terraform</h3>
+          <p>Modeling cloud infrastructure as code.</p>
+          <a href="https://www.linkedin.com/pulse/introdu%C3%A7%C3%A3o-ao-terraform-modelando-mundos-em-nuvens-pedro-bittencourt-1vpaf/" target="_blank">Read Article</a>
+        </div>
+        <div class="card article-item devops">
+          <h3>Containerizing Applications</h3>
+          <p>How to package and run apps reliably using containers.</p>
+          <a href="https://www.linkedin.com/pulse/containerizing-your-applications-pedro-bittencourt-dox4f/" target="_blank">Read Article</a>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <p style="font-size: 0.8em; text-align: center; margin-bottom: 0;">
-    Pbitts Portfolio - Software Developer - Electronics & Telecom Engineer - Deep Learning.
-  </p>
+  <footer>
+    &copy; 2025 Pbitts. All rights reserved.
+  </footer>
 
-  <a href="https://www.canva.com/design/DAGAVkWgyLA/LqaCCXYvTCRs4TlOwj8HZA/view?utm_content=DAGAVkWgyLA&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">
-    View Portfolio
-  </a>
+  <script>
+    function filterProjects(category) {
+      const items = document.querySelectorAll('.project-item');
+      items.forEach(item => {
+        item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
+      });
+    }
 
+    function filterArticles(category) {
+      const items = document.querySelectorAll('.article-item');
+      items.forEach(item => {
+        item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
+      });
+    }
+  </script>
 </body>
 </html>
