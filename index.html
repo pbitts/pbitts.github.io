@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Bittencourt | Software Solutions </title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    function filterItems(sectionId, topic) {
+      const items = document.querySelectorAll(`#${sectionId} [data-topic]`);
+      items.forEach(item => {
+        if (topic === 'all' || item.dataset.topic === topic) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+  </script>
 
-    <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-F3GD2XL7G1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -12,380 +29,207 @@
     gtag('config', 'G-F3GD2XL7G1');
   </script>
 
-  <!-- Outros estilos ou meta tags que desejar -->
-   
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pbitts | Software Developer</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #00ffff;
-      --bg-dark: #0a0a0a;
-      --bg-overlay: rgba(0,0,0,0.7);
-      --text-light: #f0f0f0;
-      --text-muted: #bbb;
-    }
-
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: var(--text-light);
-      background: var(--bg-dark) url('mountains.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.95);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.5rem 3rem;
-      z-index: 1000;
-      border-bottom: 1px solid #222;
-    }
-
-    .nav-links a {
-      margin: 0 1.5rem;
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.3rem;
-      transition: color 0.3s ease;
-    }
-
-    .nav-links a:hover {
-      color: white;
-    }
-
-    .social-icons a {
-      color: var(--primary);
-      margin-left: 1.5rem;
-      font-size: 1.6rem;
-      transition: transform 0.3s;
-    }
-
-    .social-icons a:hover {
-      transform: scale(1.2);
-    }
-
-    header {
-      padding-top: 160px;
-      text-align: center;
-      background-color: var(--bg-overlay);
-      padding-bottom: 4rem;
-    }
-
-    .banner-logo {
-      max-width: 450px;
-      width: 90%;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-size: 3.5rem;
-      margin: 0;
-      font-weight: 800;
-    }
-
-    .subtitle {
-      font-size: 1.3rem;
-      color: var(--text-muted);
-      margin: 0.3rem 0;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-      padding: 3rem 1.5rem;
-    }
-
-    section {
-      margin-bottom: 4rem;
-      background-color: var(--bg-overlay);
-      padding: 2.5rem;
-      border-radius: 12px;
-    }
-
-    h2 {
-      font-size: 2.4rem;
-      border-left: 4px solid var(--primary);
-      padding-left: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    p {
-      line-height: 1.6;
-      font-size: 1.1rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .card {
-      background-color: #111;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .card h3 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .card p {
-      font-size: 1rem;
-      color: var(--text-muted);
-    }
-
-    .card a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: bold;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-
-    .card a:hover {
-      text-decoration: underline;
-    }
-
-    .filter-btn {
-      background-color: #111;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      padding: 0.6rem 1.2rem;
-      margin: 0.3rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    .filter-btn:hover {
-      background-color: var(--primary);
-      color: #000;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 1rem;
-      color: #aaa;
-      background-color: rgba(0, 0, 0, 0.95);
-    }
-
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 1rem 1.5rem;
-      }
-
-      .nav-links {
-        margin-top: 0.5rem;
-      }
-
-      .nav-links a {
-        font-size: 1.1rem;
-        margin: 0 1rem;
-      }
-
-      .social-icons a {
-        font-size: 1.4rem;
-      }
-
-      h1 {
-        font-size: 2.2rem;
-      }
-    }
-  </style>
 </head>
-<body>
-  <nav>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#articles">Articles</a>
-    </div>
-    <div class="social-icons">
-      <a href="https://linkedin.com/in/pedrohbittencourt" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/pbitts" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="mailto:pbitts[dot]projects[at]gmail[dot]com"><i class="fas fa-envelope"></i></a>
-      <a href="https://www.upwork.com/freelancers/~yourupworkprofile" target="_blank"><i class="fas fa-briefcase"></i></a>
-    </div>
-  </nav>
+<body class="bg-black text-gray-100 font-sans tracking-wide">
 
-  <header>
-    <img src="logo.png" alt="Pbitts Logo" class="banner-logo" />
-    <h1></h1>
-    <p class="subtitle">Software Developer</p>
-    <p class="subtitle">Electronic & Telecom Engineer</p>
-    <p class="subtitle">Certified Specialist in AI, Neural Networks & Deep Learning</p>
+  <!-- Header / Navbar -->
+  <header class="sticky top-0 bg-black/80 backdrop-blur-md shadow-lg z-50 border-b border-indigo-600">
+    <nav class="max-w-6xl mx-auto flex justify-between items-center py-4 px-6">
+      <h1 class="text-2xl font-extrabold text-indigo-400 tracking-widest uppercase">Pedro Bittencourt</h1>
+      <ul class="hidden md:flex space-x-8 text-lg font-medium">
+        <li><a href="#about" class="hover:text-indigo-500 transition">About</a></li>
+        <li><a href="#projects" class="hover:text-indigo-500 transition">Projects</a></li>
+        <li><a href="#articles" class="hover:text-indigo-500 transition">Articles</a></li>
+        <li><a href="#contact" class="hover:text-indigo-500 transition">Contact</a></li>
+      </ul>
+    </nav>
   </header>
 
-<div class="container">
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      Greetings! I’m a passionate Software Developer with over 5 years of experience building intelligent, scalable, and robust systems that solve real-world problems. My academic foundation in Electronic and Telecommunications Engineering allows me to bridge the gap between hardware and software with precision and creativity.
+  <!-- Hero Section -->
+  <section class="max-w-6xl mx-auto flex flex-col items-center text-center py-24 px-6">
+    <h2 class="text-5xl md:text-7xl font-extrabold mb-6 text-gradient bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Building World-Class Software Solutions</h2>
+    <p class="text-lg md:text-xl text-gray-400 max-w-2xl mb-8">
+      My mission is to combine cutting-edge technology with exceptional design to create software that makes a real difference.
     </p>
-    <p>
-      I hold a graduate certification in Artificial Intelligence and Neural Networks, as well as a certification in Deep Learning from DeepLearning.AI — reflecting my deep commitment to advancing in this ever-evolving field. From building signal processing tools to deploying cloud-based AI solutions, I thrive in the space where innovation meets impact.
-    </p>
-    <p>
-      What drives me is the pursuit of elegant solutions to complex challenges. Whether developing applications that learn and adapt or architecting systems that scale with confidence, I bring technical excellence and an insatiable curiosity to everything I create.
-    </p>
+    <div class="flex flex-col items-center space-y-4">
+  <a href="#projects" class="px-6 py-3 bg-indigo-600/80 hover:bg-indigo-500/90 text-white rounded-2xl text-lg font-semibold shadow-lg transition backdrop-blur-sm">Explore My Work</a>
+  <div class="flex space-x-6 text-indigo-400 text-2xl">
+    <a href="https://github.com/pbitts" target="_blank" aria-label="GitHub" class="hover:text-white transition">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://linkedin.com/in/pedrohbittencourt" target="_blank" aria-label="LinkedIn" class="hover:text-white transition">
+      <i class="fab fa-linkedin"></i>
+    </a>
+    <a href="pbitts[dot]projects[at]gmail[dot]com" aria-label="Email" class="hover:text-white transition">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+</div>
+  </section>
 
-    <h3 style="margin-top: 2rem;">Certifications & Education</h3>
-    <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1rem;">
-      <ul style="list-style: none; padding: 0; flex: 1; min-width: 250px; line-height: 1.8;">
-        <li><i class="fas fa-graduation-cap" style="color: #00ffff; margin-right: 8px;"></i>Postgraduate in AI & Neural Networks – Uniube</li>
-        <li><i class="fas fa-brain" style="color: #00ffff; margin-right: 8px;"></i>Deep Learning Specialization – DeepLearning.AI</li>
-         <li><i class="fas fa-music" style="color: #00ffff; margin-right: 8px;"></i>Bachelor Degree in Electronic and Telecommunications Engineering - UFU</li>
-      </ul>
-      <ul style="list-style: none; padding: 0; flex: 1; min-width: 250px; line-height: 1.8;">
-        <li>
-            <i class="fas fa-music" style="color: #00ffff; margin-right: 8px;"></i>
-            Bachelor Final Thesis: <a href="https://repositorio.ufu.br/handle/123456789/38851" target="_blank" style="color: #00ffff; text-decoration: underline;">
+  <!-- About Section -->
+<section id="about" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
+    
+    <!-- Certifications & Education -->
+    <div>
+      <h3 class="text-4xl font-bold mb-4 text-indigo-400">Certifications & Education</h3>
+      <div class="flex flex-wrap gap-8 mt-4">
+        <ul class="list-none p-0 flex-1 min-w-[250px] leading-8">
+          <li><i class="fas fa-graduation-cap text-cyan-400 mr-2"></i>Postgraduate in AI & Neural Networks – Uniube</li>
+          <li><i class="fas fa-brain text-cyan-400 mr-2"></i>Deep Learning Specialization – DeepLearning.AI</li>
+          <li><i class="fas fa-user-graduate text-cyan-400 mr-2"></i>Bachelor Degree in Electronic and Telecommunications Engineering - UFU</li>
+        </ul>
+        <ul class="list-none p-0 flex-1 min-w-[250px] leading-8">
+          <li>
+            <i class="fas fa-scroll text-cyan-400 mr-2"></i>
+            Bachelor Final Thesis: 
+            <a href="https://repositorio.ufu.br/handle/123456789/38851" target="_blank" class="text-cyan-400 underline">
               Automatic transcription of monophonic guitar audios to tablature
             </a>
           </li>
-        <li><i class="fas fa-globe" style="color: #00ffff; margin-right: 8px;"></i>TOEFL iBT – Score: 109</li>
-        <li><i class="fab fa-aws" style="color: #00ffff; margin-right: 8px;"></i>AWS Certified Developer – Associate</li>
-      </ul>
+          <li><i class="fas fa-globe text-cyan-400 mr-2"></i>TOEFL iBT – Score: 109</li>
+          <li><i class="fab fa-aws text-cyan-400 mr-2"></i>AWS Certified Developer – Associate</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Whoami -->
+    <div>
+      <h3 class="text-4xl font-bold mb-4 text-indigo-400">whoami</h3>
+      <p class="text-gray-300 text-lg leading-relaxed mb-4">
+        I am an accomplished Software Developer with over 5 years of experience building intelligent, scalable systems that solve complex, real-world problems.
+      </p>
+      <p class="text-gray-300 text-lg leading-relaxed mb-4">
+        Specializing in backend development and AI-driven solutions, I craft distributed systems, RESTful APIs, and cloud-native platforms integrating machine learning and adaptive intelligence.
+      </p>
+      <p class="text-gray-300 text-lg leading-relaxed mb-4">
+        My mission is to merge cutting-edge technology with futuristic design to create software that makes a tangible difference.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-4xl font-bold mb-12 text-center text-indigo-400">Featured Projects</h3>
+      <div class="flex justify-center mb-10 space-x-4">
+        <button onclick="filterItems('projects','all')" class="px-4 py-2 bg-indigo-600/80 text-white rounded-lg hover:bg-indigo-500/90 transition">All</button>
+        <button onclick="filterItems('projects','ai-signal')" class="px-4 py-2 bg-gray-800/60 rounded-lg hover:bg-gray-700/80 transition">AI&Signal</button>
+        <button onclick="filterItems('projects','eng')" class="px-4 py-2 bg-gray-800/60 rounded-lg hover:bg-gray-700/80 transition">Electronics Eng.</button>
+        <button onclick="filterItems('projects','automation')" class="px-4 py-2 bg-gray-800/60 rounded-lg hover:bg-gray-700/80 transition">Automation</button>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div data-topic="eng" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Signal Conditioner Calculator</h4>
+          <p class="text-gray-400 mb-4">Tool for calculating signal conditioning circuits.</p>
+          <a href="https://signal-conditioner-calculator.onrender.com/" target="_blank" class="text-indigo-500 font-medium hover:underline">View Project →</a>
+        </div>
+        <div data-topic="eng" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Optical Link Calculator</h4>
+          <p class="text-gray-400 mb-4">Calculates power budgets in optical communication systems.</p>
+          <a href="https://optical-link-calculator.onrender.com/" target="_blank" class="text-indigo-500 font-medium hover:underline">View Project →</a>
+        </div>
+        <div data-topic="eng" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Mid-Rise Quantization Simulator</h4>
+          <p class="text-gray-400 mb-4">Simulates mid-rise quantization for signal processing studies.</p>
+          <a href="https://mid-rise-signal-quantization-simulator.onrender.com/" target="_blank" class="text-indigo-500 font-medium hover:underline">View Project →</a>
+        </div>
+        <div data-topic="ai-signal" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Guitar Audio Transcription</h4>
+          <p class="text-gray-400 mb-4">Automatic transcription of monophonic guitar audios to tablature.</p>
+          <a href="https://github.com/pbitts/AGT_tabs" target="_blank" class="text-indigo-500 font-medium hover:underline">View Project →</a>
+        </div>
+      </div>
     </div>
   </section>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <div style="text-align:center;">
-        <button class="filter-btn" onclick="filterProjects('all')">All</button>
-        <button class="filter-btn" onclick="filterProjects('eng')">Electronic & Telecom Engineering</button>
-        <button class="filter-btn" onclick="filterProjects('signal-ai')">AI & Signal Processing</button>
-        <button class="filter-btn" onclick="filterProjects('automation')">Automation</button>
+  <!-- Articles Section -->
+  <section id="articles" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-4xl font-bold mb-12 text-center text-indigo-400">Latest Articles</h3>
+      <div class="flex justify-center mb-10 space-x-4">
+        <button onclick="filterItems('articles','all')" class="px-4 py-2 bg-indigo-600/80 text-white rounded-lg hover:bg-indigo-500/90 transition">All</button>
+        <button onclick="filterItems('articles','ai')" class="px-4 py-2 bg-gray-800/60 rounded-lg hover:bg-gray-700/80 transition">AI</button>
+        <button onclick="filterItems('articles','software')" class="px-4 py-2 bg-gray-800/60 rounded-lg hover:bg-gray-700/80 transition">Software</button>
+        <button onclick="filterItems('articles','devops')" class="px-4 py-2 bg-gray-800/60 rounded-lg hover:bg-gray-700/80 transition">Devops</button>
       </div>
-      <div class="grid" id="project-grid">
-        <div class="card project-item eng">
-          <h3>Signal Conditioner Calculator</h3>
-          <p>Tool for calculating signal conditioning circuits.</p>
-          <a href="https://signal-conditioner-calculator.onrender.com/" target="_blank">View Project</a>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div data-topic="ai" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Paper: Automatic transcription of monophonic guitar audios to tablature</h4>
+          <p class="text-gray-400 mb-4">XXII CEEL, 2024 - 10.5281/zenodo.14804501</p>
+          <a href="https://zenodo.org/records/14804501" target="_blank" class="text-indigo-500 font-medium hover:underline">Read Paper →</a>
         </div>
-        <div class="card project-item eng">
-          <h3>Optical Link Calculator</h3>
-          <p>Calculates power budgets in optical communication systems.</p>
-          <a href="https://optical-link-calculator.onrender.com/" target="_blank">View Project</a>
+        <div data-topic="ai" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Fine-tuning Artificial Brains</h4>
+          <p class="text-gray-400 mb-4">Exploring strategies in neural network training.</p>
+          <a href="https://www.linkedin.com/pulse/fine-tuning-artificial-brains-symphony-strategies-pedro-bittencourt-1stdf/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
         </div>
-        <div class="card project-item eng">
-          <h3>Mid-Rise Quantization Simulator</h3>
-          <p>Simulates mid-rise quantization for signal processing studies.</p>
-          <a href="https://mid-rise-signal-quantization-simulator.onrender.com/" target="_blank">View Project</a>
+        <div data-topic="software" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Clean Architecture</h4>
+          <p class="text-gray-400 mb-4">Reducing stress and improving codebase clarity.</p>
+          <a href="https://www.linkedin.com/pulse/clean-architecture-power-reducing-stress-increasing-pedro-bittencourt-elczc/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
         </div>
-        <div class="card project-item signal-ai">
-          <h3>Guitar Audio Transcription</h3>
-          <p>Automatic transcription of monophonic guitar audios to tablature.</p>
-          <a href="https://github.com/pbitts/AGT_tabs" target="_blank">View Project</a>
+        <div data-topic="devops" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Welcome to the System Gates</h4>
+          <p class="text-gray-400 mb-4">Introducing Istio, the Guardian of Microservices with Service Mesh Power</p>
+          <a href="https://www.linkedin.com/pulse/welcome-system-gates-introducing-istio-guardian-mesh-bittencourt-ms0cf/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
         </div>
-        <div class="card project-item automation">
-          <h3>Investments Report</h3>
-          <p>Python tool to generate and visualize investment performance reports.</p>
-          <a href="https://github.com/pbitts/investments_report" target="_blank">View Project</a>
+        <div data-topic="devops" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Introduction to Terraform</h4>
+          <p class="text-gray-400 mb-4">Modeling cloud infrastructure as code</p>
+          <a href="https://www.linkedin.com/pulse/introdu%C3%A7%C3%A3o-ao-terraform-modelando-mundos-em-nuvens-pedro-bittencourt-1vpaf/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
+        </div>
+        <div data-topic="devops" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Containerizing Applications</h4>
+          <p class="text-gray-400 mb-4">How to package and run apps reliably using containers.</p>
+          <a href="https://www.linkedin.com/pulse/containerizing-your-applications-pedro-bittencourt-dox4f/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
+        </div>
+        <div data-topic="ai" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Transformers in Software Requirements Extraction</h4>
+          <p class="text-gray-400 mb-4">Why RE-BERT and T5 Are Game Changers</p>
+          <a href="https://www.linkedin.com/pulse/transformers-software-requirements-extraction-why-t5-game-pedro-osttf/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
+        </div>
+        <div data-topic="ai" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Pandas 101</h4>
+          <p class="text-gray-400 mb-4">Turning Raw Data into Powerful Insights with Python</p>
+          <a href="https://www.linkedin.com/pulse/pandas-101-turning-raw-data-powerful-insights-python-bittencourt-lav8f/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
+        </div>
+        <div data-topic="ai" class="bg-black/70 rounded-3xl p-6 backdrop-blur-md border border-indigo-500 shadow-lg hover:shadow-xl transition">
+          <h4 class="text-xl font-semibold mb-2 text-indigo-300">Practical Neural Networks</h4>
+          <p class="text-gray-400 mb-4">Twith Tensor Flow and Keras</p>
+          <a href="https://www.linkedin.com/pulse/pratical-neural-networks-tensor-flow-keras-pedro-bittencourt-osiqf/" target="_blank" class="text-indigo-500 font-medium hover:underline">Read More →</a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="articles">
-      <h2>Articles</h2>
-      <div style="text-align:center;">
-        <button class="filter-btn" onclick="filterArticles('all')">All</button>
-        <button class="filter-btn" onclick="filterArticles('ai')">AI</button>
-        <button class="filter-btn" onclick="filterArticles('architecture')">Software Architecture</button>
-        <button class="filter-btn" onclick="filterArticles('devops')">DevOps</button>
-      </div>
-      <div class="grid" id="article-grid">
-        <div class="card article-item ai">
-          <h3>Paper: Automatic transcription of monophonic guitar audios to tablature</h3>
-          <p> XXII CEEL, 2024 - 10.5281/zenodo.14804501</p>
-          <a href="https://zenodo.org/records/14804501" target="_blank">Read Paper</a>
-        </div>
-        <div class="card article-item ai">
-          <h3>Fine-tuning Artificial Brains</h3>
-          <p>Exploring strategies in neural network training.</p>
-          <a href="https://www.linkedin.com/pulse/fine-tuning-artificial-brains-symphony-strategies-pedro-bittencourt-1stdf/" target="_blank">Read Article</a>
-        </div>
-        <div class="card article-item architecture">
-          <h3>Clean Architecture</h3>
-          <p>Reducing stress and improving codebase clarity.</p>
-          <a href="https://www.linkedin.com/pulse/clean-architecture-power-reducing-stress-increasing-pedro-bittencourt-elczc/" target="_blank">Read Article</a>
-        </div>
-        <div class="card article-item devops">
-          <h3>Welcome to the System Gates</h3>
-          <p>Introducing Istio, the Guardian of Microservices with Service Mesh Power</p>
-          <a href="https://www.linkedin.com/pulse/welcome-system-gates-introducing-istio-guardian-mesh-bittencourt-ms0cf/" target="_blank">Read Article</a>
-        </div>
-        <div class="card article-item devops">
-          <h3>Introduction to Terraform</h3>
-          <p>Modeling cloud infrastructure as code.</p>
-          <a href="https://www.linkedin.com/pulse/introdu%C3%A7%C3%A3o-ao-terraform-modelando-mundos-em-nuvens-pedro-bittencourt-1vpaf/" target="_blank">Read Article</a>
-        </div>
-        <div class="card article-item devops">
-          <h3>Containerizing Applications</h3>
-          <p>How to package and run apps reliably using containers.</p>
-          <a href="https://www.linkedin.com/pulse/containerizing-your-applications-pedro-bittencourt-dox4f/" target="_blank">Read Article</a>
-        </div>
-         <div class="card article-item ai">
-          <h3>Transformers in Software Requirements Extraction</h3>
-          <p>Why RE-BERT and T5 Are Game Changers</p>
-          <a href="https://www.linkedin.com/pulse/transformers-software-requirements-extraction-why-t5-game-pedro-osttf/" target="_blank">Read Article</a>
-        </div>
-        <div class="card article-item ai">
-          <h3>Pandas 101</h3>
-          <p>Turning Raw Data into Powerful Insights with Python</p>
-          <a href="https://www.linkedin.com/pulse/pandas-101-turning-raw-data-powerful-insights-python-bittencourt-lav8f/" target="_blank">Read Article</a>
-        </div>
-        <div class="card article-item ai">
-          <h3>Practical Neural Networks</h3>
-          <p>with Tensor Flow and Keras</p>
-          <a href="https://www.linkedin.com/pulse/pratical-neural-networks-tensor-flow-keras-pedro-bittencourt-osiqf/" target="_blank">Read Article</a>
-        </div>
-      </div>
-    </section>
-  </div>
-  
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 bg-gradient-to-b from-black via-gray-900 to-black">
+    <div class="max-w-3xl mx-auto text-center">
+      <h3 class="text-4xl font-bold mb-6 text-indigo-400">Get in Touch</h3>
+      <p class="text-gray-400 text-lg mb-8">Interested in collaborating or hiring me for your next project? Let’s connect!</p>
+    </div>
+    <div class="flex justify-center mt-6 space-x-8 text-indigo-400 text-2xl">
+        <a href="https://github.com/pbitts" target="_blank" aria-label="GitHub" class="hover:text-white transition">
+            <i class="fab fa-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/pedrohbittencourt" target="_blank" aria-label="LinkedIn" class="hover:text-white transition">
+            <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="pbitts[dot]projects[at]gmail[dot]com" aria-label="Email" class="hover:text-white transition">
+            <i class="fas fa-envelope"></i>
+        </a>
+    </div>
 
-  <footer>
-    &copy; 2025 Pbitts. All rights reserved.
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-indigo-600 py-6 text-center text-gray-500 text-sm">
+    © 2025 Pbitts. All rights reserved.
   </footer>
 
-  <script>
-    function filterProjects(category) {
-      const items = document.querySelectorAll('.project-item');
-      items.forEach(item => {
-        item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
-      });
-    }
-
-    function filterArticles(category) {
-      const items = document.querySelectorAll('.article-item');
-      items.forEach(item => {
-        item.style.display = (category === 'all' || item.classList.contains(category)) ? 'block' : 'none';
-      });
-    }
-  </script>
 </body>
 </html>
